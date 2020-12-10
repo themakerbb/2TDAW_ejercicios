@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	<style>
+		.bordered{
+			border: solid black 1px;
+			height: 200px;
+			font-size:2em;
+			display: flex;
+			align-items: center;
+			justify-content:center;
+		}
+
+		#screen{
+			text-align: center;
+			font-size: 2.5em;
+			margin-top:50px;
+		}
+
+		p{
+			font-size: 2em;
+			text-align: center;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 bordered">A</div>
+		</div>
+		<div class="row">
+			<div class="offset-lg-3 offset-md-2 offset-sm-1 col-lg-6 col-md-8 col-sm-10 col-12 bordered">B</div>
+		</div>
+		<div class="row">
+			<div class="offset-lg-1 col-lg-4 col-md-5 offset-sm-0 col-sm-6 offset-1 col-10 bordered">C</div>
+			<div class="offset-md-2 col-lg-4 col-md-5 offset-sm-0 col-sm-6 offset-1 col-10 bordered">D</div>
+		</div>
+	</div>
+	<p> Screen size: <span id="screen-size"></span></p>
+</body>
+
+<!-- código js malévolo made in Borja, no intentar comprender -->
+<script type="text/javascript">
+	function getScreenSize(){
+		if(window.innerWidth<576){
+			return 0;
+		}
+		if(window.innerWidth<768){
+			return 1;
+		}
+		if(window.innerWidth<992){
+			return 2;
+		}
+		if(window.innerWidth<1200){
+			return 3;
+		}
+
+		return 4;
+	}
+
+	function getNameScreenSize(){
+		var names = ['xs', 'sm', 'md', 'lg', 'xl'];
+		return names[getScreenSize()];
+	}
+
+
+	function setInfoSize(){
+		var text = document.getElementById("screen-size");
+		text.innerText= getNameScreenSize();
+	}
+
+	setInfoSize();
+
+	window.onresize = function(){
+		setInfoSize();
+	}
+</script>
+</html>
